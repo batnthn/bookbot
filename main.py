@@ -3,9 +3,13 @@ def main():
     text = get_book_text(book_path)
     count = get_word_count(book_path)
     characters = get_char_appearances(book_path)
-    print(text)
+    sorted_characters = sort_on(characters)
+    print("--- Begint report of books/freankenstein.txt ---")
+    print(f"{text} words found in the document")
     print(count)
-    print(characters)
+    for char, num in sorted_characters:
+        print(f"The '{char}' character was found {num} times")
+    print("--- End report ---")
 
     
 def get_book_text(path):
@@ -29,6 +33,8 @@ def get_char_appearances(chars):
             char_count[da] = char_count.setdefault(da, 0)+1
     return char_count
 
+def sort_on(dict):
+    return sorted(dict.items(), key=lambda item: item[1], reverse=True)
 
     
 main ()
